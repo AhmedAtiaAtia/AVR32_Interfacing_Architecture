@@ -20,23 +20,23 @@
 /* DISCRIPTION : PORT A DIRECTIONS INPUT OR OUTPUT  
 *                 FROM PIN 0 -> PIN 7              */
 #define DIO_u8_PIN_DIR_0    DIO_u8_OUTPUT
-#define DIO_u8_PIN_DIR_1    DIO_u8_INPUT
-#define DIO_u8_PIN_DIR_2    DIO_u8_INPUT
-#define DIO_u8_PIN_DIR_3    DIO_u8_INPUT
+#define DIO_u8_PIN_DIR_1    DIO_u8_OUTPUT
+#define DIO_u8_PIN_DIR_2    DIO_u8_OUTPUT
+#define DIO_u8_PIN_DIR_3    DIO_u8_OUTPUT
 #define DIO_u8_PIN_DIR_4    DIO_u8_OUTPUT
-#define DIO_u8_PIN_DIR_5    DIO_u8_INPUT
-#define DIO_u8_PIN_DIR_6    DIO_u8_INPUT
-#define DIO_u8_PIN_DIR_7    DIO_u8_INPUT
+#define DIO_u8_PIN_DIR_5    DIO_u8_OUTPUT
+#define DIO_u8_PIN_DIR_6    DIO_u8_OUTPUT
+#define DIO_u8_PIN_DIR_7    DIO_u8_OUTPUT
 
 /* DISCRIPTION : PORT B DIRECTIONS INPUT OR OUTPUT  
 *                 FROM PIN 8 -> PIN 15              */
-#define DIO_u8_PIN_DIR_8    DIO_u8_INPUT
-#define DIO_u8_PIN_DIR_9    DIO_u8_INPUT
-#define DIO_u8_PIN_DIR_10   DIO_u8_INPUT
-#define DIO_u8_PIN_DIR_11   DIO_u8_INPUT
-#define DIO_u8_PIN_DIR_12   DIO_u8_INPUT
-#define DIO_u8_PIN_DIR_13   DIO_u8_INPUT
-#define DIO_u8_PIN_DIR_14   DIO_u8_INPUT
+#define DIO_u8_PIN_DIR_8    DIO_u8_OUTPUT
+#define DIO_u8_PIN_DIR_9    DIO_u8_OUTPUT
+#define DIO_u8_PIN_DIR_10   DIO_u8_OUTPUT
+#define DIO_u8_PIN_DIR_11   DIO_u8_OUTPUT
+#define DIO_u8_PIN_DIR_12   DIO_u8_OUTPUT
+#define DIO_u8_PIN_DIR_13   DIO_u8_OUTPUT
+#define DIO_u8_PIN_DIR_14   DIO_u8_OUTPUT
 #define DIO_u8_PIN_DIR_15   DIO_u8_OUTPUT
 
 /* DISCRIPTION : PORT C DIRECTIONS INPUT OR OUTPUT  
