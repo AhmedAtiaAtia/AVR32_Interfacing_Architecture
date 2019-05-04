@@ -1,9 +1,9 @@
-/******************************************************/
-/* Author  : Ahmed Atia Atia                          */
-/* Date    : 12 April 2018                            */
-/* Version : 1V 									  */
-/* Description : prog for Lcd                         */
-/******************************************************/
+/************************************************************/
+/* 	Author 	 	 : Ahmed Atia Atia                          */
+/* 	Date   		 : 20 April 2019                            */
+/* 	Version 	 : 1V 									    */
+/* 	Description	 : Config.c for DC Motor                    */
+/************************************************************/
 
 #include "STD_Types.h"
 #include "Bit_Math.h"
@@ -11,9 +11,8 @@
 #include "DIO_int.h"
 
 #include "LCD_int.h"
-#include "LCD_config.h"
 #include "LCD_priv.h"
-
+#include "LCD_config.h"
 
 #include <util/delay.h>
 
@@ -114,12 +113,35 @@ void LCD_vidClear( void )
 
 void LCD_vidGotoXY( u8 u8LineNbCpy , u8 u8CharNbCpy )
 {
-
-
+ /* switchcase over line */
+	if( u8 u8LineNbCpy == 1 )
+	{
+		/*  function set (Line1 position " x ") */
+		LCD_vidSendCmd( (LCD_BEGINNING_FIRST_LINE + u8CharNbCpy) );
+			
+	}
+	
+	else if( u8 u8LineNbCpy == 2 )
+	{
+		/*  function set (Line1 position " x ") */
+		LCD_vidSendCmd( (LCD_BEGINNING_SECOND_LINE + u8CharNbCpy) );
+		
+	}
+	
+	
 }
 
+
+/* warnning avoid (u8*)"ahmed" */
 void LCD_vidWriteString( u8 * pu8StringCpy )
 {
-
+	u8 Loc_u8Counter = 0 ;
+	
+	while(pu8StringCpy[Loc_u8Counter] !='\0')
+	{
+		LCD_vidWriteChar(pu8StringCpy[Loc_u8Counter]);
+		Loc_u8Counter++;		
+	}
+	
 
 }

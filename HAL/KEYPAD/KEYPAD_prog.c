@@ -52,13 +52,13 @@ u8 KEYPAD_u8GetPressedKey(void)
 	
 	switch(LOC_u8ColumnValue)
 	{
-		case 0b00001110: LOC_u8preesed = 1 ;
+		case 0b00001110: LOC_u8preesed = '1' ;
 		break;                         
 		                               
-		case 0b00001101: LOC_u8preesed = 2 ;
+		case 0b00001101: LOC_u8preesed = '2' ;
 		break;                          
 		                                
-		case 0b00001011: LOC_u8preesed = 3 ;
+		case 0b00001011: LOC_u8preesed = '3' ;
 		break;                          
 		                                
 		case 0b00000111: LOC_u8preesed = '+' ;
@@ -85,13 +85,13 @@ u8 KEYPAD_u8GetPressedKey(void)
 	
 	switch(LOC_u8ColumnValue)
 	{
-		case 0b00001110: LOC_u8preesed = 4 ;
+		case 0b00001110: LOC_u8preesed = '4' ;
 		break;                         
 		                               
-		case 0b00001101: LOC_u8preesed = 5 ;
+		case 0b00001101: LOC_u8preesed = '5' ;
 		break;                          
 		                                
-		case 0b00001011: LOC_u8preesed = 6 ;
+		case 0b00001011: LOC_u8preesed = '6' ;
 		break;                          
 		                                
 		case 0b00000111: LOC_u8preesed = '-' ;
@@ -104,7 +104,7 @@ u8 KEYPAD_u8GetPressedKey(void)
 	{	
 	/**   !comment : send row sequence  3  */
 	
-DIO_voidSetPinValue(KEYPAD_U8_ROW_1,DIO_u8_HIGH);
+    DIO_voidSetPinValue(KEYPAD_U8_ROW_1,DIO_u8_HIGH);
 	DIO_voidSetPinValue(KEYPAD_U8_ROW_2,DIO_u8_HIGH);
 	DIO_voidSetPinValue(KEYPAD_U8_ROW_3,DIO_u8_LOW);
 	DIO_voidSetPinValue(KEYPAD_U8_ROW_4,DIO_u8_HIGH);
@@ -118,13 +118,13 @@ DIO_voidSetPinValue(KEYPAD_U8_ROW_1,DIO_u8_HIGH);
 
 	switch(LOC_u8ColumnValue)
 	{
-		case 0b00001110: LOC_u8preesed = 7 ;
+		case 0b00001110: LOC_u8preesed = '7' ;
 		break;                         
 		                               
-		case 0b00001101: LOC_u8preesed = 8 ;
+		case 0b00001101: LOC_u8preesed = '8' ;
 		break;                          
 		                                
-		case 0b00001011: LOC_u8preesed = 9 ;
+		case 0b00001011: LOC_u8preesed = '9' ;
 		break;                          
 		                                
 		case 0b00000111: LOC_u8preesed = '*' ;
@@ -155,7 +155,7 @@ DIO_voidSetPinValue(KEYPAD_U8_ROW_1,DIO_u8_HIGH);
 		case 0b00001110: LOC_u8preesed = '.' ;
 		break;                         
 		                               
-		case 0b00001101: LOC_u8preesed = 0 ;
+		case 0b00001101: LOC_u8preesed = '0' ;
 		break;                          
 		                                
 		case 0b00001011: LOC_u8preesed = '=' ;

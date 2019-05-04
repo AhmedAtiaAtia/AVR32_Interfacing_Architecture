@@ -19,8 +19,8 @@
 /******************************************************/
 /* Description : Definitions for DIO OUTPUT and INPUT */
 
-#define DIO_u8_OUTPUT            1
-#define DIO_u8_INPUT             0
+#define DIO_u8_OUTPUT          1
+#define DIO_u8_INPUT           0
 
 
 /**************************************************/

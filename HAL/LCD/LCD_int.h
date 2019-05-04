@@ -1,9 +1,9 @@
-/******************************************************/
-/* Author  : Ahmed Atia Atia                          */
-/* Date    : 12 April 2018                            */
-/* Version : 1V 									  */
-/* Description : Interface for Lcd                    */
-/******************************************************/
+/************************************************************/
+/* 	Author 	 	 : Ahmed Atia Atia                          */
+/* 	Date   		 : 20 April 2019                            */
+/* 	Version 	 : 1V 									    */
+/* 	Description	 : Config.c for DC Motor                    */
+/************************************************************/
 
 #ifndef _LCD_INT_H
 #define _LCD_INT_H
