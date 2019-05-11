@@ -68,7 +68,7 @@ void GIE_voidDisable()
 	/**            cleare Bit Number 7 in SREG REGISTER by 0   */
 	/***********************************************************/
 	
-	CLEARE_BIT(SREG , 7);
+	CLEAR_BIT(SREG , 7);
 	
 }
 
