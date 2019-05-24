@@ -5,7 +5,7 @@
 /* 	Description	 : Config.c for DC Motor                    */
 /************************************************************/
 
-#include "STD_Types.h"
+#include "Std_types.h"
 #include "Bit_Math.h"
 
 #include "DIO_int.h"
@@ -114,14 +114,14 @@ void LCD_vidClear( void )
 void LCD_vidGotoXY( u8 u8LineNbCpy , u8 u8CharNbCpy )
 {
  /* switchcase over line */
-	if( u8 u8LineNbCpy == 1 )
+	if(  u8LineNbCpy == 1 )
 	{
 		/*  function set (Line1 position " x ") */
 		LCD_vidSendCmd( (LCD_BEGINNING_FIRST_LINE + u8CharNbCpy) );
 			
 	}
 	
-	else if( u8 u8LineNbCpy == 2 )
+	else if( u8LineNbCpy == 2 )
 	{
 		/*  function set (Line1 position " x ") */
 		LCD_vidSendCmd( (LCD_BEGINNING_SECOND_LINE + u8CharNbCpy) );

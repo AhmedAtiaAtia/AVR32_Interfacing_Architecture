@@ -49,35 +49,51 @@
 
 
 /****************************************************************/
-/* Description    :  This function used to initialize EXT0      */
+/* Description    :  This function used to initialize ADC 	    */
 /*					 Inputs : void 								*/
 /*					 return : void		 						*/
 /****************************************************************/
-void EXT0_voidInit ( void );
+
+void ADC_voidInit (void);
 
 
-/****************************************************************/
-/* Description    : This function used to Enable EXT0			*/ 
+//****************************************************************/
+/* Description    : This function used to Enable ADC			*/ 
 /*																*/
 /*					Inputs : void					  			*/
 /*					Return : void		 					    */
 /****************************************************************/
-/* Pre_condition  :  this function must be used after Interrupt */
+/* Pre_condition  :  this function must be used after ADC		*/
 /*     				 initialized 							    */
 /****************************************************************/
-void EXT0_voidEnable( void );
+
+void ADC_voidEnable();
 
 
 /****************************************************************/
-/* Description    : This function used to Disable EXT0			*/ 
+/* Description    : This function used to Enable ADC Interrput	*/ 
 /*																*/
 /*					Inputs : void					  			*/
 /*					Return : void		 					    */
 /****************************************************************/
-/* Pre_condition  :  this function must be used after Interrupt */
+/* Pre_condition  :  this function must be used after ADC		*/
 /*     				 initialized 							    */
 /****************************************************************/
-void EXT0_voidDisable( void );
+
+void ADC_voidInterrputEnable();
+
+
+/****************************************************************/
+/* Description    : This function used to Disable ADC			*/ 
+/*																*/
+/*					Inputs : void					  			*/
+/*					Return : void		 					    */
+/****************************************************************/
+/* Pre_condition  :  this function must be used after ADC 		*/
+/*     				 initialized 							    */
+/****************************************************************/
+
+void ADC_voidDisable();
 
 
 /****************************************************************/
@@ -95,6 +111,20 @@ void EXT0_voidDisable( void );
 u8 ADC_u8ReadADC(pf addresscpy);
 
 
+
+/****************************************************************/
+/* Description    : This function used to Start converting		*/ 
+/*																*/
+/*					Inputs : void					  			*/
+/*					Return : void		 					    */
+/****************************************************************/
+/* Pre_condition  :  this function must be used after ADC 		*/
+/*     				 initialized 							    */
+/****************************************************************/
+
+void ADC_voidStartConversion();
+
+
 /****************************************************************/
 /* Description    : This function used to Set lach Interrupt	*/
 /*									 happens.					*/ 
@@ -105,21 +135,33 @@ u8 ADC_u8ReadADC(pf addresscpy);
 /* Pre_condition  :  this function must be used after Interrupt */
 /*     				 initialized 							    */
 /****************************************************************/
-void EXT0_voidSetSignalch(u8 SenseCpy);
+
+void ADC_voidAutoTrigger();
+
 
 
 /****************************************************************/
-/* Description    : This function used to Check if interrupt is */
-/*					Executed or Not.							*/ 
+/* Description    : This function used to Read ADC and 			*/ 
 /*																*/
 /*					Inputs : void					  			*/
-/*					Return : flag Status [ LBTY_OK , LBTY_NOK ]	*/
+/*					Return : u16 Digital Converting melli Volt	*/
+/****************************************************************/
+/* Pre_condition  :  this function must be used after ADC 		*/
+/*     				 initialized 							    */
+/****************************************************************/
+
+u16 ADC_u16ReadADCInMV();
+
+/****************************************************************/
+/* Description    : This function used to Set lach Interrupt	*/
+/*									 happens.					*/ 
+/*																*/
+/*					Inputs : Sense Mode				  			*/
+/*					Return : void		 					    */
 /****************************************************************/
 /* Pre_condition  :  this function must be used after Interrupt */
 /*     				 initialized 							    */
 /****************************************************************/
-/*
-flagStatus EXT0_enuIsExecuted( void );
-*/
+
 
 #endif	/** !comment  :  End of guard                          **/

@@ -12,7 +12,7 @@
 
 
 int OVF = 0 ;
-int firstReading = 0 ;
+int firstReading = 1 ;
 int prevState =  0 ;
 float ton ,toff ,ttotal;
 
