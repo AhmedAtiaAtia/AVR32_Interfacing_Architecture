@@ -277,7 +277,7 @@ void ADC_voidDisable()
 void ADC_voidStartConversion()
 {
 	
-	CLEAR_BIT( ADCSRA , 7 );
+	SET_BIT( ADCSRA , 6 );
 	
 }
 
@@ -378,11 +378,14 @@ u16 ADC_u16ReadADCInMV()
 	
 	/*  ( if / else if ) condition for Macros */
 	#if ADJUSTMENT == LEFT_ADJUSTMENT
-	mv_result = ((ADCH * 5000 )/(256));
+	mv_result = ((ADCH) * (5) )/(256));
+	mv_result  *= 1000;
 	return mv_result;
 	
-	#elif ADJUSTMENT == RIGHT_ADJUSTMENT
+	//mv_result = (((ADCH) * (5000UL) )/(256));
 	
+	#elif ADJUSTMENT == RIGHT_ADJUSTMENT
+	mv_result = ((ADCH) | (ADCL<<8));
 	
 	#endif
 	

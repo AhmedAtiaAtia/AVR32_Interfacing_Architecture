@@ -2,7 +2,7 @@
 /*   Author             :    Ahmed Atia Atia 				    */
 /*	 Date 				:    20 May 2019 						*/
 /*	 Version 			:    1.0V 							 	*/
-/*	 Description 		:    prog.c for SPI					 	*/
+/*	 Description 		:    prog.c for USART				 	*/
 /****************************************************************/
 
 /****************************************************************/
@@ -17,9 +17,9 @@
 /*********************** Component DIRECTIVES *******************/
 /****************************************************************/
 
-#include "SPI_int.h"
-#include "SPI_config.h"
-#include "SPI_priv.h" 
+#include "IIC_int.h"
+#include "IIC_config.h"
+#include "IIC_priv.h" 
 
 
 /****************************************************************/
@@ -28,43 +28,61 @@
 
 
 /****************************************************************/
-/* Description    :  This function used to initialize SPI	    */
+/* Description    :  This function used to initialize USART     */
 /*					 Inputs : void 								*/
 /*					 return : void		 						*/
 /****************************************************************/
 
 
-void SPI_MasterInit( )
+void IIC_Init( u8 SlaveAddress)
 {
-	
-	/* SPI Enable */
-	SET_BIT( SPCR , 6);
-	
-	/*	Data Order LSB or MSB	*/	
-	#if DATA_ORDER	== LSB
-		SET_BIT( SPCR , 5);
-	
-	#elif DATA_ORDER	== MSB
-		CLEAR_BIT( SPCR , 5);
+		
+	/*	BIT Rate (Clock) 	*/	
+	#if BUS_CLOCK == 100	
+	/**	Comment!	TWBR = 32 	*/
+		CLEAR_BIT( TWBR , 7);
+		CLEAR_BIT( TWBR , 6);
+		SET_BIT( TWBR , 5);
+		CLEAR_BIT( TWBR , 4);
+		CLEAR_BIT( TWBR , 3);
+		CLEAR_BIT( TWBR , 2);
+		CLEAR_BIT( TWBR , 1);
+		CLEAR_BIT( TWBR , 0);
+	/** Comment!	prescaller is 00	*/
+		CLEAR_BIT( TWSR , 1);
+		CLEAR_BIT( TWSR , 0);
+
+	#elif BUS_CLOCK == 400	
+	/**	Comment!	TWBR = 32 	*/
+		CLEAR_BIT( TWBR , 7);
+		CLEAR_BIT( TWBR , 6);
+		SET_BIT( TWBR , 5);
+		CLEAR_BIT( TWBR , 4);
+		CLEAR_BIT( TWBR , 3);
+		CLEAR_BIT( TWBR , 2);
+		CLEAR_BIT( TWBR , 1);
+		CLEAR_BIT( TWBR , 0);
+	/** Comment!	prescaller is 00	*/
+		CLEAR_BIT( TWSR , 1);
+		CLEAR_BIT( TWSR , 0);
 		
 	#endif	
 	
-	/* Master Select */
-	SET_BIT( SPCR , 4);	
-	
-	/*	Clock Polarity 	*/	
-	#if CLOCK_POLARITY	== RISING_LEADING
-		CLEAR_BIT( SPCR , 3);
-	
-	#elif RISING_LEADING  == FALLING_LEADING
-		SET_BIT( SPCR , 3);
-		
-		
-	#endif
+	/** Comment!	Enable Acknowledge Bit	*/	
+	SET_BIT( TWCR , 6);
 	
 	
 	
-	/******************************************************************/
+	/** Comment!	Enable IIC Bit	*/	
+	SET_BIT( TWCR , 2);
+	
+	
+	
+	
+	
+	
+	
+	
 	u16 LOC_baudEquation = 0 ;
 
 	/*	Operation mode Synchronous or Asynchronous	*/	
@@ -128,6 +146,46 @@ void SPI_MasterInit( )
 	UBRRH = (u8)(LOC_baudEquation>>8);
 	UBRRL = (u8)LOC_baudEquation;
 	
+	
+	/* Enable receiver and transmitter */
+	/*UCSRB = (1<<RXEN)|(1<<TXEN);*/
+	SET_BIT( UCSRB , 3 );
+	SET_BIT( UCSRB , 4 );
+
+
+	
+	/*	 Character Size N-Bits	*/		
+	#if FRAME_SIZE	== 5
+		CLEAR_BIT( UCSRC , 1 );
+		CLEAR_BIT( UCSRC , 2 );
+		CLEAR_BIT( UCSRB , 2 );
+		
+	#elif FRAME_SIZE == 6
+		SET_BIT( UCSRC , 1 );
+		CLEAR_BIT( UCSRC , 2 );
+		CLEAR_BIT( UCSRB , 2 );
+		
+	#elif FRAME_SIZE == 7
+		CLEAR_BIT( UCSRC , 1 );
+		SET_BIT( UCSRC , 2 );
+		CLEAR_BIT( UCSRB , 2 );
+		
+	#elif FRAME_SIZE == 8
+		SET_BIT( UCSRC , 1 );
+		SET_BIT( UCSRC , 2 );
+		CLEAR_BIT( UCSRB , 2 );
+
+	#elif FRAME_SIZE == 9
+		SET_BIT( UCSRC , 1 );
+		SET_BIT( UCSRC , 2 );
+		SET_BIT( UCSRB , 2 );
+		
+	#endif
+
+	/* Set frame format: 8-Bits data */
+	/*	 Character Size 8-Bits	*/
+	SET_BIT( UCSRC , 1 );
+	SET_BIT( UCSRC , 2 );
 
 	/*	Stop bit select number One or Two Bits */	
 	#if STOP_BIT_SELECT	== TWO_BIT
@@ -138,7 +196,18 @@ void SPI_MasterInit( )
 	
 	#endif	
 
-
+	/*  clock polarity	*/
+	#if MODE_OF_OPERATION == SYNCHRONOUS
+	
+		#if CLOCK_POLARITY	== RISING
+			CLEAR_BIT( UCSRC , 0 );
+	
+		#elif CLOCK_POLARITY	== FALLING
+			SET_BIT( UCSRC , 0 );
+	
+		#endif	
+	
+	#endif
 
 	
 /****************************************************************/
@@ -156,35 +225,6 @@ void SPI_MasterInit( )
 }
 
 
-void SPI_SlaveInit( )
-{
-	
-	/* SPI Enable */
-	SET_BIT( SPCR , 6);
-	
-	/*	Data Order LSB or MSB	*/	
-	#if DATA_ORDER	== LSB
-		SET_BIT( SPCR , 5);
-	
-	#elif DATA_ORDER	== MSB
-		CLEAR_BIT( SPCR , 5);
-		
-	#endif	
-		
-	/* Slave Select */
-	CLEAR_BIT( SPCR , 4);
-
-	/*	Clock Polarity 	*/	
-	#if CLOCK_POLARITY	== RISING_LEADING
-		CLEAR_BIT( SPCR , 3);
-	
-	#elif RISING_LEADING  == FALLING_LEADING
-		SET_BIT( SPCR , 3);
-		
-		
-	#endif
-					
-}
 
 /****************************************************************/
 /* Description    : This function used to Send Data				*/ 
@@ -195,7 +235,7 @@ void SPI_SlaveInit( )
 /* Pre_condition  :  this function must be used after USART		*/
 /*     				 initialized 							    */
 /****************************************************************/
-void SPI_MasterTransmit( u8 data )
+void USART_Transmit( u8 data )
 {
 	
 	/* Wait for empty transmit buffer */
@@ -217,7 +257,7 @@ void SPI_MasterTransmit( u8 data )
 /* Pre_condition  :  this function must be used after USART		*/
 /*     				 initialized 							    */
 /****************************************************************/
-u8 SPI_SlaveReceive( )
+u8 USART_Receive( )
 {
 	/* Wait for data to be received */
 	while( GET_BIT( UCSRA , 7 ) ==0 );

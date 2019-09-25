@@ -1,8 +1,8 @@
 /****************************************************************/
 /*   Author             :    Ahmed Atia Atia 				    */
-/*	 Date 				:    20 May 2019 						*/
+/*	 Date 				:    25 May 2019 						*/
 /*	 Version 			:    1.0V 							 	*/
-/*	 Description 		:    Configure USART Frame [config.h] 	*/
+/*	 Description 		:    Configure IIC [config.h]		 	*/
 /****************************************************************/
 
 
@@ -11,45 +11,60 @@
 /* Description   : Guard to protect this File from include more */
 /*                 than one time .                              */
 /****************************************************************/
-#ifndef _USART_CONFIG_H
-#define _USART_CONFIG_H
+#ifndef _IIC_CONFIG_H
+#define _IIC_CONFIG_H
+
+/****************************************************************/
+/*   F_CPU = 8000000UL 											*/
+/****************************************************************/
+/** !comment : Please Enter the Bus Clock						*/
+/** 		   BUS_CLOCK can be in (KHZ) : 						*/
+/*					    					100 				*/
+/*						    				400					*/
+/****************************************************************/
+
+#define BUS_CLOCK			100
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /****************************************************************/
-/** !comment : Please Enter the Data Order						*/
-/** 		   DATA_ORDER can be : 								*/
-/*					    					LSB			 		*/
-/*						    				MSB					*/
+/*  UMSEL = 1 synchronous 										*/
+/*  UMSEL = 0 Asynchronous										*/
+/****************************************************************/
+/** !comment : Please Enter the Operation Mode					*/
+/** 		   MODE_OF_OPERATION can be : 						*/
+/*					    					ASYNCHRONOUS 		*/
+/*						    				SYNCHRONOUS 		*/
 /****************************************************************/
 
-#define DATA_ORDER					LSB
+#define MODE_OF_OPERATION	ASYNCHRONOUS
 
 
 /****************************************************************/
-/*	CPOL = 0 Rising (Leading Edge) and Falling (Trailing Edge)	*/
-/*	CPOL = 1 Falling (Leading Edge) and Rising (Trailing Edge)	*/ 
+/** !comment : For using  Speed Operation the Mode of Operation	*/
+/**							MUST be ASYNCHRONOUS				*/
 /****************************************************************/
-/** !comment : Please Enter the Clock Polarity					*/
+/*	U2X = 0 normal speed										*/
+/*	U2X = 1 double speed										*/ 
+/****************************************************************/
+/** !comment : Please Enter the Speed Operation					*/
 /** 		   Speed Operation can be : 						*/
-/*					    				RISING_LEADING	 		*/
-/*						    			FALLING_LEADING			*/
+/*					    				NORMAL_SPEED_MODE 		*/
+/*						    			DOUBLE_SPEED_MODE		*/
 /****************************************************************/
 
-#define CLOCK_POLARITY				RISING_LEADING
- 
-
-/****************************************************************/
-/*	CPHA = 0 Sample (Leading Edge) and Setup (Trailing Edge)	*/
-/*	CPHA = 1 Setup (Leading Edge) and Sample (Trailing Edge)	*/ 
-/****************************************************************/
-/** !comment : Please Enter the Clock Phase						*/
-/** 		   Speed Operation can be : 						*/
-/*					    				SAMPLE_LEADING	 		*/
-/*						    			SETUP_LEADING			*/
-/****************************************************************/
-
-#define CLOCK_PHASE					SAMPLE_LEADING
-  
+#define SPEED_OPERATION		DOUBLE_SPEED_MODE
  
 /****************************************************************/
 /** !comment : Please Enter the Frame Size						*/

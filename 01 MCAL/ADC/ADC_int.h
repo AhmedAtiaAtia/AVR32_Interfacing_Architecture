@@ -23,7 +23,7 @@
 
 #define AVCC 					5
 #define AREF 					4
-#define INTERNAL				7
+#define INTERNAL				2.56
 
 #define RIGHT_ADJUSTMENT 		0
 #define LEFT_ADJUSTMENT 		1

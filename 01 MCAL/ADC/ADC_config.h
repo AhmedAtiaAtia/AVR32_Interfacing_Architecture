@@ -23,7 +23,7 @@
 /*							    			INTERNAL			*/	
 /****************************************************************/
 
-#define VOLTAGE_REFERENCE		AVCC
+#define VOLTAGE_REFERENCE			AVCC
 
 
 
@@ -50,7 +50,7 @@
 /*							    			INTERNAL			*/	
 /****************************************************************/
 
-#define ADC_CHANNEL_NUMBER		DIO_U8_PIN_0
+#define ADC_CHANNEL_NUMBER		DIO_U8_PIN_1
 
 /****************************************************************/
 /** !comment : Please Enter the Voltage Reference				*/
@@ -70,7 +70,7 @@
 /*							    			INTERNAL			*/	
 /****************************************************************/
 
-#define ADC_PRESCALLER			DIVID_BY_2
+#define ADC_PRESCALLER				DIVID_BY_64
 
 
 
