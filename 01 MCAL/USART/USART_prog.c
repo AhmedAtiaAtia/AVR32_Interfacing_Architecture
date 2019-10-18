@@ -37,29 +37,30 @@
 void USART_Init( )
 {
 	u16 LOC_baudEquation = 0 ;
-
+	u8  LOC_u8UCSRC_Temp = 0 ;
+	
 	/*	Operation mode Synchronous or Asynchronous	*/	
 	#if MODE_OF_OPERATION == ASYNCHRONOUS
-		CLEAR_BIT(UCSRC, 6);
+		CLEAR_BIT(LOC_u8UCSRC_Temp, 6);
 	
 	#elif MODE_OF_OPERATION == SYNCHRONOUS
-		SET_BIT( UCSRC , 6 );
+		SET_BIT( LOC_u8UCSRC_Temp , 6 );
 	
 	#endif
 	
 	
 	/*	Parity mode Disabled or Odd or Even 	*/	
 	#if PARITY_MODE	== DISABLED
-		CLEAR_BIT(UCSRC, 4 );
-		CLEAR_BIT(UCSRC, 5 );
+		CLEAR_BIT(LOC_u8UCSRC_Temp, 4 );
+		CLEAR_BIT(LOC_u8UCSRC_Temp, 5 );
 		
 	#elif PARITY_MODE	== EVEN
-		CLEAR_BIT(UCSRC, 4 );
-		SET_BIT( UCSRC , 5 );
+		CLEAR_BIT(LOC_u8UCSRC_Temp, 4 );
+		SET_BIT( LOC_u8UCSRC_Temp , 5 );
 
 	#elif PARITY_MODE	== ODD
-		SET_BIT( UCSRC , 4 );
-		SET_BIT( UCSRC , 5 );
+		SET_BIT( LOC_u8UCSRC_Temp , 4 );
+		SET_BIT( LOC_u8UCSRC_Temp , 5 );
 		
 	#endif
 	
@@ -109,43 +110,43 @@ void USART_Init( )
 	
 	/*	 Character Size N-Bits	*/		
 	#if FRAME_SIZE	== 5
-		CLEAR_BIT( UCSRC , 1 );
-		CLEAR_BIT( UCSRC , 2 );
+		CLEAR_BIT( LOC_u8UCSRC_Temp , 1 );
+		CLEAR_BIT( LOC_u8UCSRC_Temp , 2 );
 		CLEAR_BIT( UCSRB , 2 );
 		
 	#elif FRAME_SIZE == 6
-		SET_BIT( UCSRC , 1 );
-		CLEAR_BIT( UCSRC , 2 );
+		SET_BIT( LOC_u8UCSRC_Temp , 1 );
+		CLEAR_BIT( LOC_u8UCSRC_Temp , 2 );
 		CLEAR_BIT( UCSRB , 2 );
 		
 	#elif FRAME_SIZE == 7
-		CLEAR_BIT( UCSRC , 1 );
-		SET_BIT( UCSRC , 2 );
+		CLEAR_BIT( LOC_u8UCSRC_Temp , 1 );
+		SET_BIT( LOC_u8UCSRC_Temp , 2 );
 		CLEAR_BIT( UCSRB , 2 );
 		
 	#elif FRAME_SIZE == 8
-		SET_BIT( UCSRC , 1 );
-		SET_BIT( UCSRC , 2 );
+		SET_BIT( LOC_u8UCSRC_Temp , 1 );
+		SET_BIT( LOC_u8UCSRC_Temp , 2 );
 		CLEAR_BIT( UCSRB , 2 );
 
 	#elif FRAME_SIZE == 9
-		SET_BIT( UCSRC , 1 );
-		SET_BIT( UCSRC , 2 );
+		SET_BIT( LOC_u8UCSRC_Temp , 1 );
+		SET_BIT( LOC_u8UCSRC_Temp , 2 );
 		SET_BIT( UCSRB , 2 );
 		
 	#endif
 
 	/* Set frame format: 8-Bits data */
 	/*	 Character Size 8-Bits	*/
-	SET_BIT( UCSRC , 1 );
-	SET_BIT( UCSRC , 2 );
+	SET_BIT( LOC_u8UCSRC_Temp , 1 );
+	SET_BIT( LOC_u8UCSRC_Temp , 2 );
 
 	/*	Stop bit select number One or Two Bits */	
 	#if STOP_BIT_SELECT	== TWO_BIT
-			SET_BIT( UCSRC , 3 );
+			SET_BIT( LOC_u8UCSRC_Temp , 3 );
 	
 	#elif STOP_BIT_SELECT	== ONE_BIT
-			CLEAR_BIT( UCSRC , 3 );
+			CLEAR_BIT( LOC_u8UCSRC_Temp , 3 );
 	
 	#endif	
 
@@ -153,10 +154,10 @@ void USART_Init( )
 	#if MODE_OF_OPERATION == SYNCHRONOUS
 	
 		#if CLOCK_POLARITY	== RISING
-			CLEAR_BIT( UCSRC , 0 );
+			CLEAR_BIT( LOC_u8UCSRC_Temp , 0 );
 	
 		#elif CLOCK_POLARITY	== FALLING
-			SET_BIT( UCSRC , 0 );
+			SET_BIT( LOC_u8UCSRC_Temp , 0 );
 	
 		#endif	
 	
@@ -171,7 +172,15 @@ void USART_Init( )
 /*				The URSEL must be one when writing the UCSRC.	*/
 /****************************************************************/
 
-	SET_BIT( UCSRC , 7 );
+	SET_BIT( LOC_u8UCSRC_Temp , 7 );
+	
+/****************************************************************/
+/** !comment :    UCSRC  : USART control and status Registe		*/
+/** 		  	Force Acesses to UCSRC Register because sharing */
+/*				the	same I/O location with UBBRH.				*/
+/****************************************************************/
+
+	UCSRC = LOC_u8UCSRC_Temp ;
 
 
 

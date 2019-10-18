@@ -18,9 +18,9 @@
 /*********************** Component DIRECTIVES *******************/
 /****************************************************************/
 
-#include "ADC_int.h"
-#include "ADC_config.h"
-#include "ADC_priv.h" 
+#include "TIMER0_int.h"
+#include "TIMER0_config.h"
+#include "TIMER0_priv.h" 
 
 
 
@@ -40,18 +40,32 @@
 void ADC_voidInit (void)
 {
 	
+	/* Bit 7 – FOC0: Force Output Compare */
+	CLEAR_BIT( TCCR0 , 7 );
+
+	
 	/*  ( if / else if ) condition for Macros */
-	#if VOLTAGE_REFERENCE == AREF
-	CLEAR_BIT( ADMUX , 6 );
-	CLEAR_BIT( ADMUX , 7 );
 	
-	#elif VOLTAGE_REFERENCE == AVCC
-	SET_BIT( ADMUX , 6 );
-	CLEAR_BIT( ADMUX , 7 );
+	#if WAVEFORM_MODE == NORMAL
+	/* Bit 6, 3 – WGM01:0: Waveform Generation Mode */ 
+	CLEAR_BIT( TCCR0 , 6 );
+	CLEAR_BIT( TCCR0 , 3 );
 	
-	#elif VOLTAGE_REFERENCE == INTERNAL
-	SET_BIT( ADMUX , 6 );
-	SET_BIT( ADMUX , 7 );
+	/* Bit 5:4 – COM01:0: Compare Match Output Mode	*/
+	CLEAR_BIT( TCCR0 , 4 );
+	CLEAR_BIT( TCCR0 , 5 );
+	
+	#elif WAVEFORM_MODE == PWM_PHASECORRECT
+	SET_BIT( TCCR0 , 6 );
+	CLEAR_BIT( TCCR0 , 3 );
+	
+	#elif WAVEFORM_MODE == CTC
+	CLEAR_BIT( TCCR0 , 6 );
+	SET_BIT( TCCR0 , 3 );
+	
+	#elif WAVEFORM_MODE == FAST_PWM  
+	SET_BIT( TCCR0 , 6 );
+	SET_BIT( TCCR0 , 3 );
 	
 	#endif
 	/* End ( if ) condition for Macros */
@@ -157,48 +171,39 @@ void ADC_voidInit (void)
 	
 
 	/*  ( if / else if ) condition for Macros */
-	#if ADC_PRESCALLER == DIVID_BY_2
+	#if ADC_PRESCALLER == NO_PRESCALLER
 	SET_BIT( ADCSRA , 0 );
 	CLEAR_BIT( ADCSRA , 1 );
-	CLEAR_BIT( ADCSRA , 2 );
-	
-	/*
-	||
-	(
-	CLEAR_BIT( ADCSRA , 0 );
-	CLEAR_BIT( ADCSRA , 1 );
-	CLEAR_BIT( ADCSRA , 2 );
-	
-	))
-	*/
-	
-	#elif ADC_PRESCALLER == DIVID_BY_4
-	CLEAR_BIT( ADCSRA , 0 );
-	SET_BIT( ADCSRA , 1 );
 	CLEAR_BIT( ADCSRA , 2 );
 	
 	
 	#elif ADC_PRESCALLER == DIVID_BY_8
+	CLEAR_BIT( ADCSRA , 0 );
+	SET_BIT( ADCSRA , 1 );
+	CLEAR_BIT( ADCSRA , 2 );
+	
+	
+	#elif ADC_PRESCALLER == DIVID_BY_64
 	SET_BIT( ADCSRA , 0 );
 	SET_BIT( ADCSRA , 1 );
 	CLEAR_BIT( ADCSRA , 2 );
 
-	#elif ADC_PRESCALLER == DIVID_BY_16
+	#elif ADC_PRESCALLER == DIVID_BY_256
 	CLEAR_BIT( ADCSRA , 0 );
 	CLEAR_BIT( ADCSRA , 1 );
 	SET_BIT( ADCSRA , 2 );
 	
-	#elif ADC_PRESCALLER == DIVID_BY_32
+	#elif ADC_PRESCALLER == DIVID_BY_1024
 	SET_BIT( ADCSRA , 0 );
 	CLEAR_BIT( ADCSRA , 1 );
 	SET_BIT( ADCSRA , 2 );
 
-	#elif ADC_PRESCALLER == DIVID_BY_64
+	#elif ADC_PRESCALLER == COUNT_FALLING_EDGES
 	CLEAR_BIT( ADCSRA , 0 );
 	SET_BIT( ADCSRA , 1 );
 	SET_BIT( ADCSRA , 2 );
 
-	#elif ADC_PRESCALLER == DIVID_BY_128
+	#elif ADC_PRESCALLER == COUNT_RISING_EDGES
 	SET_BIT( ADCSRA , 0 );
 	SET_BIT( ADCSRA , 1 );
 	SET_BIT( ADCSRA , 2 );	
@@ -220,10 +225,10 @@ void ADC_voidInit (void)
 /*     				 initialized 							    */
 /****************************************************************/
 
-void ADC_voidEnable()
+void TIMER0_voidEnable()
 {
 	
-	SET_BIT( ADCSRA , 7 );
+	SET_BIT( TIMSK , 0 );
 	
 }
 
@@ -237,11 +242,11 @@ void ADC_voidEnable()
 /*     				 initialized 							    */
 /****************************************************************/
 
-void ADC_voidInterrputEnable()
+void TIMER0_voidInterrputEnable()
 {
 
 	
-	SET_BIT( ADCSRA , 3 );
+	SET_BIT( TIMSK , 0 );
 	
 }
 
@@ -259,7 +264,9 @@ void ADC_voidInterrputEnable()
 void ADC_voidDisable()
 {
 	
-	CLEAR_BIT( ADCSRA , 7 );
+	CLEAR_BIT( TCCR0 , 0 );
+	CLEAR_BIT( TCCR0 , 1 );
+	CLEAR_BIT( TCCR0 , 2 );
 	
 }
 
@@ -388,9 +395,7 @@ u16 ADC_u16ReadADCInMV()
 	mv_result = ( ( (u16)(ADCH) ) | ( (u16)(ADCL<<8) ) );
 	
 	#endif
-	
-	
-	
+		
 }
 
 
