@@ -1,7 +1,7 @@
 
 
-#include "STD_TYPES.h"
-#include "BIT_MATH.h"
+#include "STD_Types.h"
+#include "BIT_Math.h"
 #include "DIO_int.h"
 #include "SPI_int.h"
 #include "SPI_priv.h"
@@ -24,19 +24,19 @@ void __vector_12(void)
 
 }
 
-void SPI_voidSendDataISR(uint8 Copy_Data)
+void SPI_voidSendDataISR(u8 Copy_Data)
 {
 	SPDR = Copy_Data ;
 }
 
-uint8 SPI_uint8ReadDataISR(void)
+u8 SPI_u8ReadDataISR(void)
 {
 	return SPDR ;
 }
 
 #elif INTERRUPT_MODE == DISABLE_INTERRUPT
 
-uint8 SPI_uint8Transfer(uint8 Copy_Data)
+u8 SPI_u8Transfer(u8 Copy_Data)
 {
 	SPDR = Copy_Data ;
 	while(GET_BIT(SPSR , SPIF) == 0);
@@ -130,7 +130,4 @@ void SPI_voidSlaveInit(void)
 
 
 #endif
-
-
-
 
