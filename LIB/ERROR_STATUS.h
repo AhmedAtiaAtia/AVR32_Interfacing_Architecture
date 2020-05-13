@@ -2,7 +2,7 @@
 /******** Author      : Ahmed Atia Atia *********/
 /******** Date        : 3/8/2019        *********/
 /******** version     : 1.0 V           *********/
-/******** Description : _Lbty_H_        *********/ 
+/******** Description : ERROR_STATUS	*********/ 
 /************************************************/
 
 
@@ -11,18 +11,20 @@
 /************************************************/
 
 
-#ifndef _Lbty_H_
-#define _Lbty_H_
+#ifndef _ERROR_STATUS_H_
+#define _ERROR_STATUS_H_
 
 typedef enum Error
 {
 	
-	LBTY_OK,
-	LBTY_NOK,
-	LBTY_OUT_OF_RANGR,
-	LBTY_NULL_POINTER
+	ES_OK,
+	ES_NOK,
+	ES_OUT_OF_RANGR,
+	ES_NULL_POINTER
 	
 }ErrorStatus;
+
+#define void(*pf)(void)
 
 #endif
 

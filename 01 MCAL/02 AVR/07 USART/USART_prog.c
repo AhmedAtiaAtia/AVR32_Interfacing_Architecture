@@ -82,16 +82,16 @@ void USART_Init( )
 	/*  Baud rate Equation	*/
 	#if MODE_OF_OPERATION == ASYNCHRONOUS
 			if (GET_BIT(UCSRA, 1) == 0) 
-			/* Asynchronous Normal Mode */
+			/* Asynchronous Normal Mode 			*/
 			LOC_baudEquation = ((F_CPU / (16 * BAUD_RATE)) - 1 );
 	
 			else if (GET_BIT(UCSRA, 1) == 1)
-			/* Asynchronous Double Speed Mode */
+			/* Asynchronous Double Speed Mode 		*/
 			LOC_baudEquation = ((F_CPU / (8 * BAUD_RATE)) - 1 );
 
 	#elif MODE_OF_OPERATION == SYNCHRONOUS
-		/* Synchronous Master Mode */
-		LOC_baudEquation = ((F_CPU / (2 * BAUD_RATE)) - 1 );
+			/* Synchronous Master Mode				*/
+			LOC_baudEquation = ((F_CPU / (2 * BAUD_RATE)) - 1 );
 	
 	#endif
 	
@@ -101,14 +101,14 @@ void USART_Init( )
 	UBRRL = (u8)LOC_baudEquation;
 	
 	
-	/* Enable receiver and transmitter */
+	/* Enable receiver and transmitter 				*/
 	/*UCSRB = (1<<RXEN)|(1<<TXEN);*/
 	SET_BIT( UCSRB , 3 );
 	SET_BIT( UCSRB , 4 );
 
 
 	
-	/*	 Character Size N-Bits	*/		
+	/*	 Character Size N-Bits						*/		
 	#if FRAME_SIZE	== 5
 		CLEAR_BIT( LOC_u8UCSRC_Temp , 1 );
 		CLEAR_BIT( LOC_u8UCSRC_Temp , 2 );
@@ -221,12 +221,14 @@ void USART_Transmit( u8 data )
 /****************************************************************/
 u8 USART_Receive( )
 {
-	/* Wait for data to be received */
+	/* Wait for data to be received 				*/
 	while( GET_BIT( UCSRA , 7 ) ==0 );
+	/* cleare the flag by writing logical one on it */
+	CLR_BIT( UCSRA , 7 );
 	
-	/*while ( !(UCSRA & (1<<RXC)) );*/
+	/* while ( !(UCSRA & (1<<RXC)) );				*/
 	
-	/* Get and return received data from buffer */
+	/* Get and return received data from buffer 	*/
 	return UDR;
 }
 

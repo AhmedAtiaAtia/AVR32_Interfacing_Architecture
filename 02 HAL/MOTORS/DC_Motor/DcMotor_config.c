@@ -21,7 +21,7 @@
 
 DcMotor ArrayOfMotor [ NUMBER_OF_MOTORS ] = 
 {
-	{DIO_u8_PIN_0 ,DIO_u8_PIN_7} ,
+	{DIO_u8_PIN_0 ,DIO_u8_PIN_7}  ,
 	{DIO_u8_PIN_1 ,DIO_u8_PIN_17} ,
 	{DIO_u8_PIN_8 ,DIO_u8_PIN_14} , 
 	{DIO_u8_PIN_9 ,DIO_u8_PIN_10} , 

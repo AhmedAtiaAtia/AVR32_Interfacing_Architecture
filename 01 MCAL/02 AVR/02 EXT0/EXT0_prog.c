@@ -26,7 +26,7 @@
 /***********************************************************/
 /**!comment   :  pointer to function for callback	       */
 /***********************************************************/
-
+void (*pf) (void);
 volatile pf x;
 
 /****************************************************************/
@@ -126,9 +126,10 @@ void EXT0_voidDisable()
 
 void EXT0_voidCallBack(pf addresscpy)
 {
-	
-	x = addresscpy;
-	
+	if(addresscpy != NULL)
+	{
+		x = addresscpy;
+	}
 }
 
 

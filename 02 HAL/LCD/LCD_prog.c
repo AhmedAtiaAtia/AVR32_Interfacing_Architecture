@@ -2,7 +2,7 @@
 /* 	Author 	 	 : Ahmed Atia Atia                          */
 /* 	Date   		 : 20 April 2019                            */
 /* 	Version 	 : 1V 									    */
-/* 	Description	 : Config.c for DC Motor                    */
+/* 	Description	 : Config.c for LCD		                    */
 /************************************************************/
 
 #include "Std_types.h"

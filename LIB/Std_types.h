@@ -22,7 +22,7 @@ typedef signed short int s16;
 typedef signed long int s32;
 typedef float f32;
 typedef double f64;
-typedef long double f128;
+typedef long double f96;
 
 /******************************************************/
 /*pointer to function=>for declarition pf x = & fun();*/

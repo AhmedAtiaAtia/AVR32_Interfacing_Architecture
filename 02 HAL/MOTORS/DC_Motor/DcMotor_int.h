@@ -47,6 +47,4 @@ void DcMotor_voidInit( void );
 void DcMotor_voidMove( u8 u8MotorNumber , u8 u8Direction  );
 
 
-
-
 #endif /**!comment : End of the guard 							**/ 

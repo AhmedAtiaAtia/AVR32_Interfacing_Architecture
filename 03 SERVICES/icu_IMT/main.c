@@ -26,7 +26,6 @@ ISR(TIMER0_OVF_vect)
 
 ISR(INT0_vect)
 {
-
 	if (firstReading == 1 )
 	{
 		firstReading = 0 ;
@@ -38,7 +37,6 @@ ISR(INT0_vect)
 	}
 	else
 	{
-
 		if (prevState == 1 ) // falling
 		{
 			ton = (float)(   (TCNT0 + (OVF * 256) )    * (float)  (  (float) 1024 / 8000000) );
@@ -46,8 +44,6 @@ ISR(INT0_vect)
 			OVF =  0 ;
 			prevState = 0;
 			MCUCR = 0x03 ; // sense rising
-
-
 		}
 		else // rising
 		{
@@ -56,8 +52,6 @@ ISR(INT0_vect)
 			OVF =  0 ;
 			prevState = 1;
 			MCUCR = 0x02 ; // sense falling
-
-
 		}
 	}
 }
