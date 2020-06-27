@@ -1,0 +1,71 @@
+[33mcommit 2a5362517219c516f37fa5544e53c5b5e217a92c[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Ahmed Atia <ahmed>
+Date:   Wed May 13 12:00:09 2020 +0200
+
+    Scheduler In Services Layer
+
+[33mcommit ef0a28a3507c7a5a35c23c25be7c61b9b2d6ce26[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Ahmed Atia <ahmd.atiaa2@gmail.com>
+Date:   Sat Oct 19 11:07:46 2019 +0200
+
+    SPI
+
+[33mcommit 7f504c2c1322fe36b5bb2052ddde304053229838[m
+Author: Ahmed Atia <ahmd.atiaa2@gmail.com>
+Date:   Fri Oct 18 23:44:33 2019 +0200
+
+    USART and SPI
+
+[33mcommit f1afb36cea66efccb02ae529e5bcbb103554d4ea[m
+Author: Ahmed Atia <ahmd.atiaa2@gmail.com>
+Date:   Wed Sep 25 21:41:54 2019 +0200
+
+    up date
+
+[33mcommit 79619bca5526cf10ec80809b4c114ce563dc5041[m
+Author: Ahmed Atia <ahmd.atiaa2@gmail.com>
+Date:   Fri May 24 14:29:58 2019 +0200
+
+    SERVICES ICU IMT
+
+[33mcommit 8b9ea622f29bb02a6bff18d1b7697ed81760eb93[m
+Author: Ahmed Atia <ahmd.atiaa2@gmail.com>
+Date:   Fri May 24 14:25:22 2019 +0200
+
+    SPI - under construction MCAL
+
+[33mcommit 69923ebf2c7a73195da2b1a66b30fab4a2156886[m
+Author: Ahmed Atia <ahmd.atiaa2@gmail.com>
+Date:   Fri May 24 14:22:16 2019 +0200
+
+    SERVICES for ICU and USART MCAL
+
+[33mcommit 493f348868f3553eb610e4a55c9a6cc81783bd88[m
+Author: Ahmed Atia <ahmd.atiaa2@gmail.com>
+Date:   Sat May 11 17:20:38 2019 +0200
+
+    ICU_ABO_ELNOUR
+
+[33mcommit 86b3cc1268ddabfc1dec01b25c1db914a9d21b00[m
+Author: Ahmed Atia <ahmd.atiaa2@gmail.com>
+Date:   Sat May 4 14:28:14 2019 +0200
+
+     EXT0, STEPPER MOTOR , DC MOTOR
+
+[33mcommit d8f16e2801cd65a1dd4227e91934753791a26307[m
+Author: Ahmed Atia <ahmd.atiaa2@gmail.com>
+Date:   Tue Apr 16 04:28:53 2019 +0200
+
+    LCD and KEYPAD in HAL
+
+[33mcommit 22832070e5b704f982001ab0156fcbd24bf5dc29[m
+Author: Ahmed Atia <ahmd.atiaa2@gmail.com>
+Date:   Tue Apr 16 03:23:42 2019 +0200
+
+    LCD and KEYPAD in HAL
+
+[33mcommit 0bf3a430c42cd6ccbd4bf4aafe33fbe74ac1d812[m
+Author: Ahmed Atia <ahmd.atiaa2@gmail.com>
+Date:   Sun Apr 7 14:25:28 2019 +0200
+
+    Initial Comment with (LED and Seven Segment)

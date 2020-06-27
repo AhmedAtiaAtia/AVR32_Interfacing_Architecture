@@ -22,8 +22,6 @@
 #include "ADC_config.h"
 #include "ADC_priv.h" 
 
-
-
 /****************************************************************/
 /*********************** Function Implementation  ***************/
 /****************************************************************/
@@ -34,8 +32,6 @@
 /*					 Inputs : void 								*/
 /*					 return : void		 						*/
 /****************************************************************/
-
-
 
 void ADC_voidInit (void)
 {
@@ -373,23 +369,25 @@ u16 ADC_u16ReadADCInMV()
 	
 	u16 mv_result = 0 ;
 	ADC_voidStartConversion();
+	// polling
 	while(GET_BIT(ADCSRA , 4) == 0);
+	// cleare the flag
 	SET_BIT(ADCSRA , 4 );
 	
 	/*  ( if / else if ) condition for Macros */
-	#if ADJUSTMENT == LEFT_ADJUSTMENT
-	mv_result = ((ADCH) * (5) )/(256));
-	mv_result  *= 1000;
-	return mv_result;
+	#if ADJUSTMENT == RIGH_ADJUSTMENT
+	mv_result = ((ADCH) * (5000UL) )/(256));
+	//mv_result  *= 1000;
+	
 	
 	//mv_result = (((ADCH) * (5000UL) )/(256));
 	
-	#elif ADJUSTMENT == RIGHT_ADJUSTMENT
+	#elif ADJUSTMENT == LEFT_ADJUSTMENT
 	mv_result = ( ( (u16)(ADCH) ) | ( (u16)(ADCL<<8) ) );
 	
 	#endif
 	
-	
+	return mv_result;
 	
 }
 
